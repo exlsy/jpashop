@@ -49,4 +49,11 @@ public class MemberService {
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
     }
+
+    @Transactional
+    // public Member update(Long id, String name) { --> 여기서 Member를 반환하면 영속상태가 끊긴 Member를 반환하게 된다.
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        member.setName(name);
+    }
 }
